@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: recomh-back-jee-03-api
+  profiles:
+    active:
+      - local
+  cloud:
+    config:
+      uri:
+        - http://ea-config-server.dev.sbdzu.com/api/platform-services/config-server
+        - http://ea-config-server.olimpo-devops.svc.cluster.local:8080/api/platform-services/config-server
+        - http://ea-config-server.olimpo-pro.svc.cluster.local:8080/api/platform-services/config-server
+        - http://ea-config-server.olimpo-int.svc.cluster.local:8080/api/platform-services/config-server
+        - http://ea-config-server.olimpo-uat.svc.cluster.local:8080/api/platform-services/config-server 
+      username: root
+      password: s3cr3t
+
+encrypt: 
+  key: ${olimpoEncryptKey:NOTDEFINED}

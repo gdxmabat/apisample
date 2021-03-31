@@ -1,0 +1,25 @@
+def olimpioCIlib = new es.olimpo.ciserver.shdLib()
+
+pipeline {
+    agent {
+        kubernetes {
+            defaultContainer 'backend-builder'
+            yaml libraryResource('es/olimpo/ciserver/k8s_specs/backendPodSpecs.yaml')
+        }
+    }
+
+
+    stages {
+        stage('Build Olimpo backend solution') {
+            steps {
+                script {
+                    try {
+                        olimpioCIlib.runPipelineBackend()
+                    } catch (e) {
+                        throw e
+                    }
+                }
+            }
+        }
+    }
+}
